@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var userNumber = 0
     
     var number2 = 0
+    
+    var result = 0
 
     @IBOutlet var logoImage: UIImageView!
     
@@ -38,13 +40,51 @@ class ViewController: UIViewController {
             
             outputLabel.hidden = false
             addButtonImage.hidden = false
+            
+            outputLabel.text = "Press ADD to add!"
         }
         
     }
     
     @IBAction func addBtnPressed(sender: AnyObject) {
         
+        if result <= maxAmount {
+            
+            outputLabel.text = "\(number2) + \(userNumber) = \(result)"
+            
+            number2 += userNumber
+            
+            addNumbers()
+            
+        } else {
+            
+            restartGame()
+        }
         
+        
+        
+    }
+    
+    func restartGame() {
+        
+        userNumber = 0
+        number2 = 0
+        result = 0
+        
+        logoImage.hidden = false
+        userInput.hidden = false
+        playButtonImage.hidden = false
+        
+        outputLabel.hidden = true
+        addButtonImage.hidden = true
+        
+        userInput.text = ""
+        
+    }
+    
+    func addNumbers() {
+        
+        result = userNumber + number2
     }
     
     
