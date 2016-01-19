@@ -9,6 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var maxAmount = 50
+    
+    var userNumber = 0
+    
+    var number2 = 0
 
     @IBOutlet var logoImage: UIImageView!
     
@@ -22,6 +28,17 @@ class ViewController: UIViewController {
     
     @IBAction func playBtnPressed(sender: AnyObject) {
         
+        if userInput.text != nil && userInput.text != "" {
+            
+            userNumber = Int(userInput.text!)!
+            
+            logoImage.hidden = true
+            userInput.hidden = true
+            playButtonImage.hidden = true
+            
+            outputLabel.hidden = false
+            addButtonImage.hidden = false
+        }
         
     }
     
@@ -33,7 +50,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    
     }
 
     override func didReceiveMemoryWarning() {
